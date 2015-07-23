@@ -20,6 +20,14 @@ Layer* LevelStartView::createStartLayer()
 	ui::Button *pcloseBtn = static_cast<ui::Button *>(pStart->getChildByName("closeBtn"));
 	pcloseBtn->addClickEventListener(CC_CALLBACK_1(LevelStartView::layerCloseCallback,this));
 
+
+	auto *propNode = CSLoader::createNode("PropScene.csb");
+	//Sprite *pProp = static_cast<Sprite *>(propNode->getChildByName("prop_1"));
+	Sprite* pPropList = static_cast<Sprite *>(pStart->getChildByName("prop_list_1"));
+	
+	Sprite* pProp = Sprite::create("prop 1.png");
+	pProp->setPosition(0, 0);
+	pPropList->addChild(pProp);	
 	p_mlayer->addChild(rootNode);
 	return p_mlayer;
 }
