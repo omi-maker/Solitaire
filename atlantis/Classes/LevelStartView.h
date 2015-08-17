@@ -12,10 +12,12 @@ class LevelStartView : public cocos2d::Layer
 {
 public:	
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
-	cocos2d::Layer* createStartLayer();
+	static cocos2d::Layer* createLayer();
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init();
+	// implement the "static create()" method manually
+	CREATE_FUNC(LevelStartView);
 
 	// a selector callback
 	void nextLevelCallback(cocos2d::Ref* pSender);
@@ -34,20 +36,20 @@ public:
 
 	std::string int2string(int index);
 	void initPropList(cocos2d::Layer * pStart);
-
+	
 	void propListClick(cocos2d::Sprite * pItem);
-	void propSelectClick(cocos2d::Sprite * pItem);
+	void selectedPropClick(cocos2d::Sprite * pItem);
 
-	// implement the "static create()" method manually
-	//CREATE_FUNC(LevelStartView);
+	/*release m_propSelect*/
+	void releasePropSelect();
+
 private:
 	//道具选择列表操作
 	int getFreePropSelectSpace();
 	void setFreePropSelectSpace(int index, cocos2d::Sprite * pItem);
 	void resetFreePropSelectSpace(int index);
 
-private:
-	Layer *p_mlayer;	
-	std::vector<std::string> m_propList; /*关卡的道具列表*/
-	std::map<int, cocos2d::Sprite *> m_propSelect; /*关卡的道具选择*/	
+private:	
+	std::map<std::string, std::string> m_propList; /*关卡的道具列表*/
+	std::map<int, cocos2d::Sprite *> m_propSelect; /*关卡的道具选择列表*/	
 };

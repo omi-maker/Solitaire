@@ -13,10 +13,7 @@ Scene* HelloWorld::createScene()
 
     // add layer as a child to scene
     scene->addChild(layer);
-
-	auto startLayer = new LevelStartView;
-	scene->addChild(startLayer->createStartLayer());
-
+	
     // return the scene
     return scene;
 }
@@ -77,6 +74,8 @@ bool HelloWorld::init()
     this->addChild(sprite, 0);
 	*/
 	
+	auto startLayer = LevelStartView::createLayer();	
+	this->addChild(startLayer);
 
     return true;
 }
